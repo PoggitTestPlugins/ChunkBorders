@@ -4,6 +4,7 @@ namespace Fadi\ChunkBorders;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
+use pocketmine\item\StringToItemParser;
 use pocketmine\math\Vector3;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\network\mcpe\convert\TypeConverter;
@@ -99,7 +100,7 @@ class ChunkBorders extends PluginBase
     private function sendFakeStructureBlock(Player $player, Vector3 $position): void
     {
         $blockPos = BlockPosition::fromVector3($position);
-        $pk = UpdateBlockPacket::create($blockPos, TypeConverter::getInstance()->getBlockTranslator()->internalIdToNetworkId(22150630), UpdateBlockPacket::FLAG_NETWORK, UpdateBlockPacket::DATA_LAYER_NORMAL);
+        $pk = UpdateBlockPacket::create($blockPos, TypeConverter::getInstance()->getBlockTranslator()->internalIdToNetworkId(StringToItemParser::getInstance()->parse("structure_block")->getBlock()->getStateId()), UpdateBlockPacket::FLAG_NETWORK, UpdateBlockPacket::DATA_LAYER_NORMAL);
         $player->getNetworkSession()->sendDataPacket($pk);
     }
 
@@ -117,7 +118,7 @@ class ChunkBorders extends PluginBase
         $chunkZ = $player->getPosition()->getFloorZ() >> Chunk::COORD_BIT_SIZE;
 
         if ($chunk !== null) {
-            $position = new Position($chunkX << Chunk::COORD_BIT_SIZE, 0, $chunkZ << Chunk::COORD_BIT_SIZE, $player->getWorld());
+            $position = new Position($chunkX << Chunk::COORD_BIT_SIZE, -1, $chunkZ << Chunk::COORD_BIT_SIZE, $player->getWorld());
 
             $this->sendFakeStructureBlock($player, $position);
             $this->sendStructureBlockTile([$player], $position);
