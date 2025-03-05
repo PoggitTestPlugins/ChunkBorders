@@ -1,6 +1,6 @@
 # ChunkBorders Plugin for PocketMine-MP
 
-The **ChunkBorders** plugin for PocketMine-MP adds a feature where players can visualize the chunk borders in the world. It provides a simple command to toggle the display of chunk borders for players.
+The **ChunkBorders** plugin for PocketMine-MP adds a feature where players can visualize the chunk borders in the world through the use of the structure block outline. It provides a simple command to toggle the display of chunk borders for players.
 
 ## Features
 
