@@ -1,0 +1,17 @@
+name: ChunkBorders
+main: Fadi\ChunkBorders\ChunkBorders
+version: 1.0.0
+api: [5.0.0]
+author: FadiJalal
+dependencies: [DummyItemsBlocks]
+
+description: A ChunkBorders plugin for PocketMine-MP
+
+commands:
+  chunkborders:
+    description: turns on the chunk borders
+    permission: chunkborders.command
+
+permissions:
+  chunkborders.command:
+    default: true
